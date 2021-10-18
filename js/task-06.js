@@ -1,12 +1,16 @@
 const inputWindow = document.querySelector('#validation-input');
+const ValidNumber = parseInt(inputWindow.dataset.length);
 
-inputWindow.addEventListener('blur', inputValidation);
+
 function inputValidation(input) {
-    const inputOn = input.target;
-    if (inputOn.value.length === inputOn.dataset.length) {
-        inputWindow.classList.add('valid')
-        inputWindow.classList.remove('invalid')
+    const inputOn = input.target.value.trim().length;
+    inputWindow.classList.add('invalid');
+
+    if (inputOn === ValidNumber) {
+        inputWindow.classList.replace('invalid', 'valid');
         return
     }
-    inputWindow.classList.add('invalid')
-    }
+    inputWindow.classList.replace('valid', 'invalid');
+};
+
+inputWindow.addEventListener('blur', inputValidation);
